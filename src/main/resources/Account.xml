@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="account">
+
+	<resultMap type="Account" id="accountResultMap">
+		<id property="id" column="id"/>
+		<result property="studentName" column="STUDENT_NAME"/>
+		<result property="studentSex" column="STUDENT_SEX"/>
+		<result property="studentBirthday" column="STUDENT_BIRTHDAY"/>
+	</resultMap>
+	
+	<insert id="insert"  parameterType="Account">
+		<![CDATA[
+			
+		]]> 
+	</insert>
+	
+	<update id="update" parameterType="Account">
+	
+	</update>
+	
+	<delete id="delete" parameterType="Long">
+		delete from t_XX where id=#{id} 
+	</delete>
+	
+	<select id="getOne" parameterType="Long" resultType="Account" resultMap="accountResultMap">
+		<![CDATA[
+			select * from t_XX where id=#{id} 
+		]]> 
+	</select>
+	
+	<select id="findAll" resultType="Account" resultMap="accountResultMap">
+		<![CDATA[
+			select * from t_XX where id=#{id} 
+		]]> 
+	</select>
+	
+</mapper>
