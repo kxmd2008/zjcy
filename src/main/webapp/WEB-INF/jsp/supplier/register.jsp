@@ -7,9 +7,9 @@
 		<div id="body-container">
 			<div class="standalone-page registration-page">
 				<div class="standalone-page-logo">
-					<a href="index.html">
+<!-- 					<a href=""> -->
 						<img src="assets/images/required/logo-default.png" width="156" height="44" alt="Logo" />
-					</a>
+<!-- 					</a> -->
 				</div>
 				<div class="standalone-page-top-border">
 					<span class="border-block bg-color-green"></span>

@@ -3,6 +3,7 @@ package com.zjqy.purchaseplatform.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.luis.basic.domain.BaseEntity;
 
@@ -12,6 +13,11 @@ public class Account extends BaseEntity {
 	public static final String TYPE_ADMIN = "ADMIN";// 系统管理员
 	public static final String TYPE_SUPPLIER = "SUPPLIER";// 供应商
 	public static final String TYPE_PURCHASE = "PURCHASE";// 采购
+	
+	public static final String STATUS_REGISTE = "0";//已注册,未审核
+	public static final String STATUS_INACTIVE = "1";//不可用，资料过期需更新
+	public static final String STATUS_ACTIVE = "2";//可用
+	
 	private static final long serialVersionUID = 178723493562907433L;
 	@Column(length = 50, name = "login_name")
 	private String loginName;
@@ -27,7 +33,37 @@ public class Account extends BaseEntity {
 	private String email;
 
 	@Column(length = 2)
-	private String status;// 状态
+	private String status = STATUS_REGISTE;// 状态
+
+	@Column(length = 15)
+	private String qq;
+
+	@Transient
+	private String passwordConfirm;
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
+
+	public String getQq() {
+		return qq;
+	}
+
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
 
 	public String getStatus() {
 		return status;

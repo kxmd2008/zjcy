@@ -4,6 +4,9 @@
 <jsp:include page="head.jsp"/>
 <body id="signin-type-2">
 	<div class="container-fluid">
+<!-- 		<div> -->
+<!-- 			<h1 style="font-weight: bold;color: white;text-align: center;">上海紫江彩印包装有限公司电子采购平台</h1> -->
+<!-- 		</div> -->
 		<div id="body-container">
 			<div class="standalone-page">
 				<div class="standalone-page-logo">
@@ -17,7 +20,9 @@
 								<h2 class="heading">
 									<span aria-hidden="true" class="icon icon-key"></span>
 									<span class="main-text">
-										请输入登陆信息
+										<font style="font-size: medium;" >
+										上海紫江彩印包装有限公司电子采购平台
+										</font>
 									</span>
 								</h2>
 							</div>
@@ -30,9 +35,9 @@
 								</p>
 								<form role="form" class="login-form form-horizontal" action="j_login" method="post">
 									<div class="form-group">
-										<label for="inputEmail" class="col-sm-3 control-label">用户名</label>
+										<label for="loginName" class="col-sm-3 control-label">用户名</label>
 										<div class="col-sm-9">
-											<input autocomplete="off" class="form-control" id="inputEmail" placeholder="请输入用户名" type="text" name="loginName">
+											<input autocomplete="off" class="form-control" id="loginName" placeholder="请输入用户名" type="text" name="loginName">
 											<span class="help-block text-muted"></span>
 										</div>
 									</div>
@@ -54,7 +59,7 @@
 <!-- 									</div> -->
 									<div class="form-group">
 										<div class="col-sm-offset-3 col-sm-9">
-											<button id="submit-form" type="submit" class="btn btn-success">登陆</button>
+											<button id="submit-form" type="submit" class="btn btn-success" style="width: 90px;">登 陆</button>
 											<a href="forgotPassword" class="btn btn-link btn-sm pull-right">忘记密码</a>
 										</div>
 									</div>
@@ -64,7 +69,7 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<div class="change-section">
-									<h3 class="heading">还未注册?</h3>
+									<h3 class="heading"><font style="font-size: large;">还未注册?</font></h3>
 									<a href="register" class="btn btn-default btn-block">创建新用户</a>
 								</div>
 							</div>
@@ -97,7 +102,7 @@
 	<!-- add additional User Editable files here -->
 
 	<!-- Demo JS Files -->
-	<script type="text/javascript" src="assets/js/files/pages-signin-1.js"></script>
+	<script type="text/javascript" src="assets/js/files/index.js"></script>
  
 </body>
 </html>
