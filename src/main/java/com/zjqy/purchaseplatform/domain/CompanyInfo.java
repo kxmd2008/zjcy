@@ -1,7 +1,5 @@
 package com.zjqy.purchaseplatform.domain;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
