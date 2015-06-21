@@ -13,14 +13,16 @@
 	<http pattern="/register" security="none" />
 	<http pattern="/forgotPassword" security="none" />
 	<http pattern="/assets/**" security="none" />
-	<http use-expressions="true" entry-point-ref="authenticationEntryPoint">
+	<http entry-point-ref="authenticationEntryPoint">
 		<!-- 登录过滤器 -->
 		<custom-filter before="FORM_LOGIN_FILTER" ref="loginFilter" />
-		<intercept-url pattern="/logout" access="permitAll" />
-		<intercept-url pattern="/login" access="permitAll" />
-		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/purchase/**" access="hasRole('ROLE_PURCHASE')" />
-		<intercept-url pattern="/supplier/**" access="hasRole('ROLE_SUPPLIER')" />
+		<custom-filter before="LOGOUT_FILTER" ref="logoutFilter" />
+		<intercept-url pattern="/logout" access="ROLE_ANONYMOUS" />
+		<intercept-url pattern="/login" access="ROLE_ANONYMOUS" />
+		<intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/purchase/**" access="ROLE_PURCHASE,ROLE_PM" />
+		<intercept-url pattern="/supplier/**" access="ROLE_SUPPLIER" />
+		<intercept-url pattern="/mgt/**" access="ROLE_ADMIN,ROLE_PURCHASE,ROLE_PM,ROLE_SUPPLIER" />
 
 	</http>
 
@@ -28,7 +30,7 @@
 <!-- 		class="org.luis.sainteclaires.base.security.RestAuthenticationEntryPoint" /> -->
 	<beans:bean id="authenticationEntryPoint"  
         class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">  
-        <beans:property name="loginFormUrl" value="/login" />  
+        <beans:property name="loginFormUrl" value="/index" />  
     </beans:bean>  
 
 	<!-- 指定一个自定义的authentication-manager :customUserDetailsService -->
@@ -61,7 +63,7 @@
 
 	<beans:bean id="failureHandler"
 		class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
-		<beans:property name="defaultFailureUrl" value="/login?error=true" />
+		<beans:property name="defaultFailureUrl" value="/index?error=true" />
 	</beans:bean>
 
 	<beans:bean id="successHandler"
@@ -76,7 +78,7 @@
 	<!-- 注销过滤器，完成前台用户注销时的定向功能 -->
 	<beans:bean id="logoutFilter"
 		class="org.springframework.security.web.authentication.logout.LogoutFilter">
-		<beans:constructor-arg value="/logout" />
+		<beans:constructor-arg value="/index" />
 		<beans:constructor-arg>
 			<beans:list>
 				<beans:bean

@@ -18,32 +18,57 @@ $(document).ready(function() {
 	$('#rootwizard-1').bootstrapWizard({onNext: function(tab, navigation, index) {
 		if(index == 1) {
 //			var a = $('.registration-form').validate();
-			$('.registration-form').submit();
 			var d = {};
-			d["loginName"] = $("#username").val();
+			var username = $("#username").val();
+			d["loginName"] = username;
 			d["email"] = $("#email").val();
 			d["password"] = $("#password").val();
 			d["passwordConfirm"] = $("#passwordConfirm").val();
 			d["qq"] = $("#qq").val();
 			d["phone"] = $("#phone").val();
-			if($("#username").val() != ""){
-				$.post("saveBaseInfo", json, function(data){
+			d["contact"] = $("#contact").val();
+			if(username != ""){
+				$.post("saveBaseInfo", d, function(data){
+					$("#loginName").val(username);
+					$("#accountId").val(data.item.id);
 					alert(JSON.stringify(data));
 				});
 			}
-			
 		}
-
+		
 		if(index == 2){
-			
+			var blEnd = $("#blEnd").val();
+			var trcEnd = $("#trcEnd").val();
+			var ocEnd = $("#ocEnd").val();
+			if($("#bl").children().length == 1){
+				return false;
+			}
+			if($("#trc").children().length == 1){
+				return false;
+			}
+			if($("#oc").children().length == 1){
+				return false;
+			}
+			var d = {};
+			d["blValidPeriodEnd"] = blEnd;
+			d["trcValidPeriodEnd"] = trcEnd;
+			d["ocValidPeriodEnd"] = ocEnd;
+//			d["userName"] = $("#loginName").val();
+//			d["accountId"] = $("#accountId").val();
+			if(blEnd != "" && trcEnd != "" && ocEnd != ""){
+				$.post("saveCompanyInfo", d, function(data){
+					alert(JSON.stringify(data));
+				});
+			} 
 		}
 		if(index == 3){
-			$(".form-wizard-review-block").append("<p><strong>Username:</strong> " + $(".wizard-stage-1-username").val() + "</p>");
-			$(".form-wizard-review-block").append("<p><strong>Email:</strong> " + $(".wizard-stage-1-email").val() + "</p>");
-			$(".form-wizard-review-block").append("<p><strong>password:</strong> *******</p>");
-			$(".form-wizard-review-block").append("<p><strong>Telephone:</strong> " + $(".wizard-stage-2-optional-1").val() + "</p>");
-			$(".form-wizard-review-block").append("<p><strong>Your Address:</strong> " + $(".wizard-stage-2-optional-2").val() + "</p>");
-			$(".form-wizard-review-block").append("<p><strong>Write something about yourself:</strong> " + $(".wizard-stage-2-optional-3").val() + "</p>");
+			var rawMaterialsTypes = $("#rawMaterialsTypes").val();
+			alert(rawMaterialsTypes);
+			var d = {};
+			d["rawMaterialsTypes"] = rawMaterialsTypes;
+			$.post("saveProduct", d, function(data){
+				alert(JSON.stringify(data));
+			});
 		}
 	}, onTabShow: function(tab, navigation, index) {
 		var $total = navigation.find('li').length;
@@ -76,7 +101,7 @@ $(document).ready(function() {
 });
 
 function registor(){
-	$('.registration-form')
+	$('#step1')
 	.bootstrapValidator({
 		feedbackIcons: {
 			valid: 'icon icon-check',
@@ -147,8 +172,6 @@ function registor(){
 
 		// // Hide the success icon
 		// $parent.find('.form-control-feedback[data-bv-icon-for="' + data.field + '"]').hide();
-//		alert(data.bv);
-//		alert(data.field);
 		var $parent = data.element.parents('.form-group');
 		// Remove the has-success class
 		$parent.removeClass('has-success');
@@ -165,6 +188,7 @@ function registor(){
 		// var $parent = data.element.parents('.form-group');
 
 		// // Hide the success icon
-		alert(222);
+	}).on('form.success.bv', function(e) {
+		alert(1);
 	});
 }

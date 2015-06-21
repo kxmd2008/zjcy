@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.security.core.Authentication;
@@ -14,7 +15,7 @@ import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.util.StringUtils;
 
-import com.zjqy.purchaseplatform.domain.Account;
+import com.zjqy.purchaseplatform.domain.RoleType;
 
 public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
@@ -30,13 +31,21 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 	public void onAuthenticationSuccess(HttpServletRequest request,
 			HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
-		
-		WrappedUserLogin userDetails = (WrappedUserLogin) authentication.getPrincipal();
+
+		WrappedUserLogin userDetails = (WrappedUserLogin) authentication
+				.getPrincipal();
 		UserLogin userLogin = userDetails.getUserLogin();
+
+		HttpSession session = request.getSession();
+		session.setAttribute("userLogin", userLogin);
+		// Account dbUser =
+		// accountService.getAccount(userDetails.getUsername());
+		// session.setAttribute("custAccount", dbUser);
+
 		// 获取登录之前的访问地址
 		SavedRequest savedRequest = requestCache.getRequest(request, response);
+		System.out.println("savedRequest is  " + savedRequest);
 		if (savedRequest == null) {
-			System.out.println("savedRequest is null ");
 			// 用户判断是否要使用上次通过session里缓存的回调URL地址
 			int flag = 0;
 			// 通过提交登录请求传递需要回调的URL callCustomRediretUrl
@@ -53,10 +62,10 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 			}
 			// 重设置默认URL为主页地址
 			if (flag == 0) {
-//				super.setDefaultTargetUrl(LOCAL_SERVER_URL);
+				// super.setDefaultTargetUrl(LOCAL_SERVER_URL);
 				super.setDefaultTargetUrl(targetUrl(userLogin));
 			}
-			
+
 			super.onAuthenticationSuccess(request, response, authentication);
 			return;
 		}
@@ -67,7 +76,7 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 						.getParameter(targetUrlParameter)))) {
 			requestCache.removeRequest(request, response);
 			super.setAlwaysUseDefaultTargetUrl(false);
-			super.setDefaultTargetUrl("/");
+			super.setDefaultTargetUrl(targetUrl(userLogin));
 			super.onAuthenticationSuccess(request, response, authentication);
 			return;
 		}
@@ -82,14 +91,15 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 		getRedirectStrategy().sendRedirect(request, response, targetUrl);
 
 	}
-	
-	private String targetUrl(UserLogin userLogin){
+
+	private String targetUrl(UserLogin userLogin) {
 		String targetUrl = "/";
-		if(Account.TYPE_ADMIN.equals(userLogin.getUserType())){
+		if (RoleType.ADMIN.name().equals(userLogin.getUserType())) {
 			targetUrl = getAdminUrl();
-		} else if(Account.TYPE_PURCHASE.equals(userLogin.getUserType())){
+		} else if (RoleType.PURCHASE.name().equals(userLogin.getUserType())
+				|| RoleType.PM.name().equals(userLogin.getUserType())) {
 			targetUrl = getPurchaseUrl();
-		} else if(Account.TYPE_SUPPLIER.equals(userLogin.getUserType())){
+		} else if (RoleType.SUPPLIER.name().equals(userLogin.getUserType())) {
 			targetUrl = getSupplierUrl();
 		}
 		return targetUrl;

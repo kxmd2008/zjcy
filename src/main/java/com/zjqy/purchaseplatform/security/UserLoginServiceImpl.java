@@ -22,7 +22,7 @@ public class UserLoginServiceImpl implements UserDetailsService {
 		UserLogin userLogin =  null;  
         if(username != null && !"".equals(username) && username.indexOf("@") > 0){  
               userLogin = UserLoginDao.findByEmail(username);  
-              username = userLogin.getNick();  
+//              username = userLogin.getNick();  
         }else{  
             userLogin = UserLoginDao.findByNick(username);  
         }  
@@ -39,14 +39,20 @@ public class UserLoginServiceImpl implements UserDetailsService {
         List<GrantedAuthority> resultAuths = new ArrayList<GrantedAuthority>();  
   
         // 供应商 
-        if (Account.TYPE_SUPPLIER.equals(userType)) {  
-            resultAuths.add(new SimpleGrantedAuthority("ROLE_SUPPLIER"));  
-        } else if(Account.TYPE_PURCHASE.equals(userType)) {  
-            resultAuths.add(new SimpleGrantedAuthority("ROLE_PURCHASE"));  
-        } else if(Account.TYPE_ADMIN.equals(userType)) {  
-            resultAuths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));  
-        } else {
-        	
+//        if (Account.TYPE_SUPPLIER.equals(userType)) {  
+//            resultAuths.add(new SimpleGrantedAuthority("ROLE_SUPPLIER"));  
+//        } else if(Account.TYPE_PURCHASE.equals(userType)) {  
+//            resultAuths.add(new SimpleGrantedAuthority("ROLE_PURCHASE"));  
+//        } else if(Account.TYPE_PM.equals(userType)) {  
+//            resultAuths.add(new SimpleGrantedAuthority("ROLE_PM"));  
+//        } else if(Account.TYPE_ADMIN.equals(userType)) {  
+//        	resultAuths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));  
+//        } else {
+//        	
+//        }
+        
+        if(userType != null && !"".equals(userType.trim())){
+        	resultAuths.add(new SimpleGrantedAuthority("ROLE_" + userType));  
         }
           
         return new WrappedUserLogin(userLogin, resultAuths);

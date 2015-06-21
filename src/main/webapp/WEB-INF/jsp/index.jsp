@@ -21,7 +21,7 @@
 									<span aria-hidden="true" class="icon icon-key"></span>
 									<span class="main-text">
 										<font style="font-size: medium;" >
-										上海紫江彩印包装有限公司电子采购平台
+										<s:message code="system.title"/>
 										</font>
 									</span>
 								</h2>

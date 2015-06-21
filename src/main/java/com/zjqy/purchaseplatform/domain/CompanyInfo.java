@@ -19,19 +19,19 @@ public class CompanyInfo extends BaseEntity {
 	private String contact;// 联系人
 
 	private String blFile;// 营业执照文件地址businessLicense
-	private String blValidPeriodStart;// 营业执照有效期
+	// private String blValidPeriodStart;// 营业执照有效期
 	private String blValidPeriodEnd;// 营业执照有效期
 
 	private String trcFile;// 税务登记证文件地址Tax registration certificate
-	private String trcValidPeriodStart;// 税务登记证有效期
+	// private String trcValidPeriodStart;// 税务登记证有效期
 	private String trcValidPeriodEnd;// 税务登记证有效期
 
 	private String ocFile;// 组织结构代码证文件地址organizationCode
-	private String ocalidPeriodStart;// 组织结构代码证有效期
+	// private String ocalidPeriodStart;// 组织结构代码证有效期
 	private String ocValidPeriodEnd;// 组织结构代码证有效期
 
 	@Transient
-	private List<String> rawMaterialsTypes;// 所供原材料类型
+	private String[] rawMaterialsTypes;// 所供原材料类型
 
 	private String supplierType = SUPPLIER_TYPE_FACTORY;// 供应商类型
 
@@ -67,14 +67,6 @@ public class CompanyInfo extends BaseEntity {
 		this.blFile = blFile;
 	}
 
-	public String getBlValidPeriodStart() {
-		return blValidPeriodStart;
-	}
-
-	public void setBlValidPeriodStart(String blValidPeriodStart) {
-		this.blValidPeriodStart = blValidPeriodStart;
-	}
-
 	public String getBlValidPeriodEnd() {
 		return blValidPeriodEnd;
 	}
@@ -89,14 +81,6 @@ public class CompanyInfo extends BaseEntity {
 
 	public void setTrcFile(String trcFile) {
 		this.trcFile = trcFile;
-	}
-
-	public String getTrcValidPeriodStart() {
-		return trcValidPeriodStart;
-	}
-
-	public void setTrcValidPeriodStart(String trcValidPeriodStart) {
-		this.trcValidPeriodStart = trcValidPeriodStart;
 	}
 
 	public String getTrcValidPeriodEnd() {
@@ -115,14 +99,6 @@ public class CompanyInfo extends BaseEntity {
 		this.ocFile = ocFile;
 	}
 
-	public String getOcalidPeriodStart() {
-		return ocalidPeriodStart;
-	}
-
-	public void setOcalidPeriodStart(String ocalidPeriodStart) {
-		this.ocalidPeriodStart = ocalidPeriodStart;
-	}
-
 	public String getOcValidPeriodEnd() {
 		return ocValidPeriodEnd;
 	}
@@ -131,11 +107,11 @@ public class CompanyInfo extends BaseEntity {
 		this.ocValidPeriodEnd = ocValidPeriodEnd;
 	}
 
-	public List<String> getRawMaterialsTypes() {
+	public String[] getRawMaterialsTypes() {
 		return rawMaterialsTypes;
 	}
 
-	public void setRawMaterialsTypes(List<String> rawMaterialsTypes) {
+	public void setRawMaterialsTypes(String[] rawMaterialsTypes) {
 		this.rawMaterialsTypes = rawMaterialsTypes;
 	}
 

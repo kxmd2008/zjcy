@@ -10,13 +10,13 @@ public class UserLogin extends User {
 
 	private static final long serialVersionUID = -6362269144512309620L;
 
-	private String id;
+	private Long id;
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

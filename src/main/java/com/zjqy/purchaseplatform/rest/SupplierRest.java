@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zjqy.purchaseplatform.domain.Account;
 import com.zjqy.purchaseplatform.domain.CompanyInfo;
+import com.zjqy.purchaseplatform.domain.RoleType;
 import com.zjqy.purchaseplatform.service.SupplierService;
 
 @Controller
@@ -18,11 +19,6 @@ public class SupplierRest {
 
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index() {
-		return "index";
-	}
-	
-	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String login(HttpServletRequest request) {
 		return "index";
 	}
 	
@@ -46,30 +42,37 @@ public class SupplierRest {
 		return "supplier/supplier";
 	}
 	
-	
-	
 	/////////////////////////////////////////////////
 	@RequestMapping(value = "saveBaseInfo", method = RequestMethod.POST)
 	@ResponseBody
-	public SimpleMessage<Object> step1(Account account){
-		account.setType(Account.TYPE_PURCHASE);
-		supplierService.createAccount(account);
+	public SimpleMessage<Object> step1(HttpServletRequest req, Account account){
+		account.setType(RoleType.SUPPLIER.name());
+//		supplierService.createAccount(account);
+		req.getSession().setAttribute("account", account);
 		SimpleMessage<Object> sm = new SimpleMessage<Object>();
+		sm.setItem(account);
 		return sm;
 	}
 	
 	@RequestMapping(value = "saveCompanyInfo", method = RequestMethod.POST)
 	@ResponseBody
-	public SimpleMessage<Object> step2(CompanyInfo ci){
-		supplierService.createCompany(ci);
+	public SimpleMessage<Object> step2(HttpServletRequest req, CompanyInfo ci){
+//		supplierService.createCompany(ci);
+		Account account = (Account) req.getSession().getAttribute("account");
+		account.getCompany().setBlValidPeriodEnd(ci.getBlValidPeriodEnd());
+		account.getCompany().setTrcValidPeriodEnd(ci.getTrcValidPeriodEnd());
+		account.getCompany().setOcValidPeriodEnd(ci.getOcValidPeriodEnd());
 		SimpleMessage<Object> sm = new SimpleMessage<Object>();
 		return sm;
 	}
 	
 	@RequestMapping(value = "saveProduct", method = RequestMethod.POST)
 	@ResponseBody
-	public SimpleMessage<Object> step3(CompanyInfo ci){
+	public SimpleMessage<Object> step3(HttpServletRequest req, CompanyInfo ci){
 		SimpleMessage<Object> sm = new SimpleMessage<Object>();
+		Account account = (Account) req.getSession().getAttribute("account");
+		supplierService.createAccount(account);
+		supplierService.createCompany(ci);
 		return sm;
 	}
 	

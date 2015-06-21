@@ -18,7 +18,7 @@ public class UserLoginDao {
 		
 		UserLogin ul = new UserLogin(account.getLoginName(), account.getPassword(), true, true, true, true,
 				new ArrayList<GrantedAuthority>());
-
+		ul.setId(account.getId());
 		ul.setEmail(account.getEmail());
 		ul.setMobile(account.getPhone());
 		ul.setUserType(account.getType());

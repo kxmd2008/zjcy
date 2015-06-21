@@ -140,7 +140,7 @@
 												<div class="tab-pane" id="tab1">
 													<div class="row"  style="margin-top: 15px;">
 														<div class="col-md-6">
-															<form method="post" id="wizard-stage-1" class="registration-form form-horizontal" >
+															<form id="step1" class="registration-form form-horizontal" >
 																<div class="form-group">
 <!-- 																	<label class="control-label">用户名</label> -->
 <!-- 																	<input type="text" class="form-control wizard-stage-1-username" name="username" /> -->
@@ -212,9 +212,10 @@
 <!-- 																			</div> -->
 																			<div class="block-content-outer">
 																				<div class="block-content-inner">
-																					<form action="auth/upload" class="dropzone" id="basic-dropzone" style="min-height: 100px;">
+																					<form action="auth/upload" class="dropzone" id="bl" style="min-height: 100px;">
 																						<div class="fallback">
 																							<input name="file" type="file" id="blFile"/>
+																							<input type="hidden" name="type" value="bl"/>
 																						</div>
 																					</form>
 																				</div>
@@ -239,9 +240,10 @@
 <!-- 																			</div> -->
 																			<div class="block-content-outer">
 																				<div class="block-content-inner">
-																					<form action="auth/upload" class="dropzone" id="basic-dropzone" style="min-height: 100px;">
+																					<form action="auth/upload" class="dropzone" id="trc" style="min-height: 100px;">
 																						<div class="fallback">
 																							<input name="file" type="file" id="trcFile"/>
+																							<input type="hidden" name="type" value="trc"/>
 																						</div>
 																					</form>
 																				</div>
@@ -266,9 +268,10 @@
 <!-- 																			</div> -->
 																			<div class="block-content-outer">
 																				<div class="block-content-inner">
-																					<form action="auth/upload" class="dropzone" id="basic-dropzone" style="min-height: 100px;">
+																					<form action="auth/upload" class="dropzone" id="oc" style="min-height: 100px;">
 																						<div class="fallback">
 																							<input name="file" type="file" id="ocFile"/>
+																							<input type="hidden" name="type" value="oc"/>
 																						</div>
 																					</form>
 																				</div>
@@ -371,6 +374,9 @@
 			</div>
 		</div>
 	</div><!-- /.container -->
+	
+	<input type="hidden" id="loginName"> 
+	<input type="hidden" id="accountId"> 
 	<!-- Placed at the end of the document so the pages load faster -->
 	<!-- Required JS Files -->
 	<script type="text/javascript" src="assets/js/required/jquery-1.11.1.min.js"></script>
