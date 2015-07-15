@@ -3,8 +3,11 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="Account" type="com.zjqy.purchaseplatform.domain.Account"/>
+		<typeAlias alias="Company" type="com.zjqy.purchaseplatform.domain.CompanyInfo"/>
+		<typeAlias alias="MaterialsInquiry" type="com.zjqy.purchaseplatform.domain.MaterialsInquiry"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="Account.xml" />
+		<mapper resource="Company.xml" />
 	</mappers>
 </configuration>	

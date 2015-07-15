@@ -21,7 +21,7 @@
 	<bean id="springContextAware" class="org.luis.basic.util.SpringContextAware" />
 
 	<!-- Spring Bean Auto Scan -->
-	<context:component-scan base-package="org.luis.basic.domain" />
+	<context:component-scan base-package="org.luis.basic" />
 	<context:component-scan base-package="com.zjqy.purchaseplatform" />
 
 	<import resource="spring-ds.xml" />

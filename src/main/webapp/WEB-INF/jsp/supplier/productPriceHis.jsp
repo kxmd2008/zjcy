@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <jsp:include page="../head.jsp"/>
-
+<link type="text/css" href="<%=request.getContextPath()%>/assets/css/optional/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 <!-- 产品报价 -->
 <body>
 	<div class="container-fluid">
@@ -20,24 +20,46 @@
 									<a href="#">首页</a>
 								</li>
 								<li>
-									<a href="#">询价查询</a>
+									<a href="#">竞价管理</a>
 								</li>
 							</ol>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<h1>
 								<span aria-hidden="true" class="icon icon-dollar"></span>
 								<span class="main-text">
-									询价查询
+									历史竞价查询
 								</span>
 							</h1>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-8">
 							<!-- START Main Buttons -->
 							<div class="page-heading-controls">
-								<a href="productPriceAdd" role="button" class="btn btn-primary">新增询价</a>
+								<div class="simple-search-inner">
+									<div class="simple-search-block">
+										<div class="input-group form-inline ">
+											<div class="input-group date form_date col-md-3" data-date="" data-date-format="yyyy-mm-dd" >
+							                    <input class="form-control" type="text" value="${inquiry.arrivalDate }" name="" placeholder="开始时间">
+												<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+							                </div>
+							                <div class="input-group date form_date col-md-3" data-date="" data-date-format="yyyy-mm-dd" >
+							                    <input class="form-control" type="text" value="${inquiry.arrivalDate }" name="" placeholder="结束时间">
+												<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+							                </div>
+							                <div class="input-group col-md-3" >
+												<input type="text" class="form-control" id="input-search" placeholder="Enter Search Terms...">
+												<span class="input-group-btn">
+												<button type="submit" class="btn btn-default">
+													<span class="main-text">Search</span>
+												</button>
+											</span>
+											</div>
+											
+										</div>
+									</div>
+								</div>
 							</div>
 							<!-- END Main Buttons -->
 						</div>
@@ -87,7 +109,7 @@
 																<td class="text-right">${item.arrivalDate }</td>
 																<td class="text-right"></td>
 																<td class="text-right">
-																	<a href="productPriceEdit/${item.id }" role="button" class="btn btn-primary">修改</a>
+																	<a href="inquiry/${item.id }" role="button" class="btn btn-primary">竞价</a>
 																</td>
 															</tr>
 														</c:forEach>
@@ -128,14 +150,25 @@
 	<script type="text/javascript" src="<%=request.getContextPath()%>/assets/js/required/icheck.min.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/assets/js/required/misc/jquery.ui.touch-punch.min.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/assets/js/required/circloid-functions.js"></script>
-
+	<script type="text/javascript" src="<%=request.getContextPath()%>/assets/js/optional/misc/moment.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/assets/js/optional/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/assets/js/optional/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+	
 	<!-- Optional JS Files -->
 	<!-- add optional JS plugin files here -->
 
 	<!-- REQUIRED: User Editable JS Files -->
 	<script type="text/javascript" src="<%=request.getContextPath()%>/assets/js/script.js"></script>
 	<!-- add additional User Editable files here -->
- 
+ 	<script type="text/javascript">
+	 	$('.form_date').datetimepicker({
+			language:  'zh-CN',
+			autoclose: 1,
+			todayHighlight: 1,
+			minView: 2,
+			forceParse: 0,
+		});
+ 	</script>
 </body>
 </html>
 

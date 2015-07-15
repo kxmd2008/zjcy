@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="company">
+
+	<resultMap type="Company" id="companyResultMap">
+		<id property="id" column="id"/>
+		<result property="userName" column="userName"/>
+		<result property="accountId" column="accountId"/>
+		<result property="contact" column="contact"/>
+		
+		<result property="blFile" column="blFile"/>
+		<result property="blValidPeriodEnd" column="blValidPeriodEnd"/>
+		<result property="trcFile" column="trcFile"/>
+		<result property="trcValidPeriodEnd" column="trcValidPeriodEnd"/>
+		<result property="ocFile" column="ocFile"/>
+		<result property="ocValidPeriodEnd" column="ocValidPeriodEnd"/>
+		<result property="supplierType" column="supplierType"/>
+		
+	</resultMap>
+	
+	<select id="findCompany" parameterType="List" resultType="Company" >
+		select distinct ci.* from t_company_info ci 
+		left join product_raw_materials prm on prm.company_id = ci.id
+		where prm.raw_materials_id in
+		<foreach collection="list" item="item" open= "(" close =")" separator=",">
+			#{item}
+		</foreach>
+	</select>
+	
+</mapper>

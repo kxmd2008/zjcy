@@ -87,15 +87,19 @@
 	</icon>
 	<error-page>
 		<error-code>404</error-code>
-		<location>/xhtml/views/sys-404.xhtml</location>
+		<location>/404</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/403</location>
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/xhtml/views/sys-500.xhtml</location>
+		<location>/500</location>
 	</error-page>
 	<error-page>
 		<exception-type>javax.servlet.ServletException</exception-type>
-		<location>/xhtml/views/sys-500.xhtml</location>
+		<location>/500</location>
 	</error-page>
 	<welcome-file-list>
 		<welcome-file></welcome-file>

@@ -5,6 +5,8 @@ import org.luis.basic.domain.IGenericService;
 
 import com.zjqy.purchaseplatform.domain.Account;
 import com.zjqy.purchaseplatform.domain.CompanyInfo;
+import com.zjqy.purchaseplatform.domain.MaterialsInquiry;
+import com.zjqy.purchaseplatform.domain.RawMaterials;
 
 public class ServiceFactory {
 
@@ -24,5 +26,23 @@ public class ServiceFactory {
 			companyService = BaseServiceBuilder.build(CompanyInfo.class);
 		}
 		return companyService;
+	}
+	
+	private static IGenericService<RawMaterials> materialsService;
+	
+	public static IGenericService<RawMaterials> getMaterialsService(){
+		if(materialsService == null){
+			materialsService = BaseServiceBuilder.build(RawMaterials.class);
+		}
+		return materialsService;
+	}
+	
+	private static IGenericService<MaterialsInquiry> materialsInquiryService;
+	
+	public static IGenericService<MaterialsInquiry> getMaterialsInquiryService(){
+		if(materialsInquiryService == null){
+			materialsInquiryService = BaseServiceBuilder.build(MaterialsInquiry.class);
+		}
+		return materialsInquiryService;
 	}
 }

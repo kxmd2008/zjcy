@@ -37,11 +37,6 @@ public class SupplierRest {
 		return "supplier/forgotPassword";
 	}
 	
-	@RequestMapping(value = "supplier", method = RequestMethod.GET)
-	public String supplier(HttpServletRequest request) {
-		return "supplier/supplier";
-	}
-	
 	/////////////////////////////////////////////////
 	@RequestMapping(value = "saveBaseInfo", method = RequestMethod.POST)
 	@ResponseBody

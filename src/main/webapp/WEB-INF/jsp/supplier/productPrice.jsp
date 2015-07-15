@@ -20,7 +20,7 @@
 									<a href="#">首页</a>
 								</li>
 								<li>
-									<a href="#">询价查询</a>
+									<a href="#">竞价管理</a>
 								</li>
 							</ol>
 						</div>
@@ -30,15 +30,12 @@
 							<h1>
 								<span aria-hidden="true" class="icon icon-dollar"></span>
 								<span class="main-text">
-									询价查询
+									竞价查询
 								</span>
 							</h1>
 						</div>
 						<div class="col-md-6">
 							<!-- START Main Buttons -->
-							<div class="page-heading-controls">
-								<a href="productPriceAdd" role="button" class="btn btn-primary">新增询价</a>
-							</div>
 							<!-- END Main Buttons -->
 						</div>
 					</div>
@@ -87,7 +84,7 @@
 																<td class="text-right">${item.arrivalDate }</td>
 																<td class="text-right"></td>
 																<td class="text-right">
-																	<a href="productPriceEdit/${item.id }" role="button" class="btn btn-primary">修改</a>
+																	<a href="inquiry/${item.id }" role="button" class="btn btn-primary">竞价</a>
 																</td>
 															</tr>
 														</c:forEach>

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>  
 <!-- START Header Container -->
 <div id="header-container">
 	<div class="header-bar navbar navbar-inverse" role="navigation"> <!-- NOTE TO READER: Accepts the following class(es) "navbar-fixed-top" class -->
@@ -21,7 +22,7 @@
 					<s:message code="system.title"/>
 					</h3>
 				</div>
-
+				
 				<!-- START Mobile Menu Toggle -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle navigation</span>
@@ -30,7 +31,7 @@
 					<span class="icon-bar"></span>
 				</button>
 				<!-- END Mobile Menu Toggle -->
-
+				<c:if test="${!empty userLogin}">
 				<!-- START Header Info Container -->
 				<div class="header-info">
 					<!-- START Header User Profile -->
@@ -54,7 +55,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="logout">
+										<a href="<%=request.getContextPath()%>/logout">
 <!-- 										<a href="javascript:logout();"> -->
 											<span aria-hidden="true" class="icon icon-arrow-curve-right"></span>
 											<span class="main-text">退出</span>
@@ -89,7 +90,7 @@
 												<a href="#">
 													<span class="notifications-alert-list-text">
 														<span class="notifications-alert-list-image">
-															<img class="list-thumbnail" src="assets/images/required/profile/profile-pic-6.jpg" width="40" height="40" alt="profile-pic-6" />
+															<img class="list-thumbnail" src="<%=request.getContextPath()%>/assets/images/required/profile/profile-pic-6.jpg" width="40" height="40" alt="profile-pic-6" />
 														</span>
 														<span class="notifications-alert-list-header">Samantha Carter</span>
 														Re: Updated proposal. Approved.
@@ -101,7 +102,7 @@
 												<a href="#">
 													<span class="notifications-alert-list-text">
 														<span class="notifications-alert-list-image">
-															<img class="list-thumbnail" src="assets/images/required/profile/profile-pic-3.jpg" width="40" height="40" alt="profile-pic-3" />
+															<img class="list-thumbnail" src="<%=request.getContextPath()%>/assets/images/required/profile/profile-pic-3.jpg" width="40" height="40" alt="profile-pic-3" />
 														</span>
 														<span class="notifications-alert-list-header">Daniel Jackson</span>
 														Meeting minutes attached
@@ -113,7 +114,7 @@
 												<a href="#">
 													<span class="notifications-alert-list-text">
 														<span class="notifications-alert-list-image">
-															<img class="list-thumbnail" src="assets/images/required/profile/profile-pic-2.jpg" width="40" height="40" alt="profile-pic-2" />
+															<img class="list-thumbnail" src="<%=request.getContextPath()%>/assets/images/required/profile/profile-pic-2.jpg" width="40" height="40" alt="profile-pic-2" />
 														</span>
 														<span class="notifications-alert-list-header">Sally Skyler</span>
 														Bug Report #2
@@ -125,7 +126,7 @@
 												<a href="#">
 													<span class="notifications-alert-list-text">
 														<span class="notifications-alert-list-image">
-															<img class="list-thumbnail" src="assets/images/required/profile/profile-pic-5.jpg" width="40" height="40" alt="profile-pic-5" />
+															<img class="list-thumbnail" src="<%=request.getContextPath()%>/assets/images/required/profile/profile-pic-5.jpg" width="40" height="40" alt="profile-pic-5" />
 														</span>
 														<span class="notifications-alert-list-header">Teal'c Jafar</span>
 														Interesting Sales Tips
@@ -257,7 +258,7 @@
 
 				</div>
 				<!-- END Header Info Container -->
-
+				</c:if>
 			</div>
 		</div>
 	</div>

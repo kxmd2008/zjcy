@@ -2580,7 +2580,7 @@ ul.mainnav-horizontal > li > ul > li > ul > li > ul > li > ul > li > ul > li > a
 }
 #right-column .right-column-content {
   padding: 15px 25px 20px;
-  min-height: 744px;
+  min-height: 680px;
   position: relative;
   z-index: 0;
 }

@@ -21,6 +21,7 @@
 		<intercept-url pattern="/login" access="ROLE_ANONYMOUS" />
 		<intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
 		<intercept-url pattern="/purchase/**" access="ROLE_PURCHASE,ROLE_PM" />
+		<intercept-url pattern="/common/**" access="ROLE_PURCHASE,ROLE_PM" />
 		<intercept-url pattern="/supplier/**" access="ROLE_SUPPLIER" />
 		<intercept-url pattern="/mgt/**" access="ROLE_ADMIN,ROLE_PURCHASE,ROLE_PM,ROLE_SUPPLIER" />
 

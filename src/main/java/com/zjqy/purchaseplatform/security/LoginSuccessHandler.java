@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.luis.basic.domain.FilterAttributes;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
@@ -15,7 +16,9 @@ import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.util.StringUtils;
 
+import com.zjqy.purchaseplatform.domain.CompanyInfo;
 import com.zjqy.purchaseplatform.domain.RoleType;
+import com.zjqy.purchaseplatform.mybitis.mapper.ServiceFactory;
 
 public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
@@ -38,6 +41,12 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
 		HttpSession session = request.getSession();
 		session.setAttribute("userLogin", userLogin);
+		String userType = userLogin.getUserType();
+		if(RoleType.SUPPLIER.name().equals(userType)){
+			FilterAttributes fa = FilterAttributes.blank().add("accountId", userLogin.getId());
+			CompanyInfo company = ServiceFactory.getCompanyService().findOneByFilter(fa);
+			session.setAttribute("company", company);
+		}
 		// Account dbUser =
 		// accountService.getAccount(userDetails.getUsername());
 		// session.setAttribute("custAccount", dbUser);

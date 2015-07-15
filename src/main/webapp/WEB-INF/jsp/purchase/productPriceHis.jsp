@@ -20,7 +20,7 @@
 									<a href="#">首页</a>
 								</li>
 								<li>
-									<a href="#">询价查询</a>
+									<a href="#">询价历史查询</a>
 								</li>
 							</ol>
 						</div>
@@ -30,7 +30,7 @@
 							<h1>
 								<span aria-hidden="true" class="icon icon-dollar"></span>
 								<span class="main-text">
-									询价查询
+									询价历史查询
 								</span>
 							</h1>
 						</div>
@@ -44,7 +44,6 @@
 					</div>
 					<div class="row">
 						<div class="col-md-12">
-
 							<!-- START Block: Product List -->
 							<div class="block">
 <!-- 								<div class="block-heading"> -->

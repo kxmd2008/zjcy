@@ -13,6 +13,7 @@ public class CompanyInfo extends BaseEntity {
 
 	private String userName;
 	private Long accountId;
+	private String name;
 
 	private String contact;// 联系人
 
@@ -32,6 +33,14 @@ public class CompanyInfo extends BaseEntity {
 	private String[] rawMaterialsTypes;// 所供原材料类型
 
 	private String supplierType = SUPPLIER_TYPE_FACTORY;// 供应商类型
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getUserName() {
 		return userName;
