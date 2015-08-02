@@ -30,6 +30,9 @@
 					<li><a href="<%=request.getContextPath()%>/purchase/productPrice">询价管理</a></li>
 					<li><a href="#">供应商管理</a></li>
 				</ul>
+				<ul>
+					<li><a href="<%=request.getContextPath()%>/purchase/orders">订单管理</a></li>
+				</ul>
 			</li>
 			<li class="menu-item-top">
 				<a href="#" class="top">
@@ -42,6 +45,9 @@
 				<ul>
 					<li><a href="<%=request.getContextPath()%>/supplier">待竞价</a></li>
 					<li><a href="<%=request.getContextPath()%>/supplier/inquiryHis">历史竞价查询</a></li>
+				</ul>
+				<ul>
+					<li><a href="<%=request.getContextPath()%>/supplier/orders">订单管理</a></li>
 				</ul>
 			</li>
 		</ul>

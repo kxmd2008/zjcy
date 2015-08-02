@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Dict>
+	<dict code="1001" desc="订单状态">
+		<item label="待付款" value="0"/>
+		<item label="已付款待发货" value="1"/>
+		<item label="已发货待收货" value="2"/>
+		<item label="已收货" value="3"/>
+	</dict>
+
+</Dict>
