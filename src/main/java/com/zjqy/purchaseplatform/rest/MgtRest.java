@@ -14,15 +14,16 @@ import com.zjqy.purchaseplatform.domain.Account;
 import com.zjqy.purchaseplatform.service.AccountBizService;
 import com.zjqy.purchaseplatform.util.BaseUtil;
 
-@Controller("/mgt")
+@Controller()
+@RequestMapping("/mgt")
 public class MgtRest {
 	
-	@RequestMapping(value = "toChangePwd", method = RequestMethod.GET)
+	@RequestMapping(value = "changePwd", method = RequestMethod.GET)
 	public String toChangePwd(HttpServletRequest req, ModelMap map){
 		return "common/changePwd";
 	}
 	
-	@RequestMapping(value = "changePwd", method = RequestMethod.POST)
+	@RequestMapping(value = "updPassword", method = RequestMethod.POST)
 	@ResponseBody
 	public SimpleMessage<Object> changePwd(HttpServletRequest req, ModelMap map, Account account){
 		Account sessionAccount = BaseUtil.getSessionAccount(req);

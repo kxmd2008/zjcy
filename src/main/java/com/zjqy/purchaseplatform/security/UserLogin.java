@@ -6,6 +6,8 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
+import com.zjqy.purchaseplatform.domain.Account;
+
 public class UserLogin extends User {
 
 	private static final long serialVersionUID = -6362269144512309620L;
@@ -24,6 +26,15 @@ public class UserLogin extends User {
 	private String email;
 	private String mobile;
 	private String userType;
+	private Account account;
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 
 	public String getNick() {
 		return nick;
@@ -66,10 +77,8 @@ public class UserLogin extends User {
 	}
 
 	public String toString() {
-		return new ToStringBuilder(this)
-				.append("nick", nick)
-				.append("email", email)
-				.append("mobile", mobile)
+		return new ToStringBuilder(this).append("nick", nick)
+				.append("email", email).append("mobile", mobile)
 				.append("userType", userType).toString();
 	}
 

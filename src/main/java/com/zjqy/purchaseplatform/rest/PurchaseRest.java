@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zjqy.purchaseplatform.domain.MaterialsInquiry;
+import com.zjqy.purchaseplatform.domain.Order;
+import com.zjqy.purchaseplatform.domain.OrderItem;
 import com.zjqy.purchaseplatform.service.CommonService;
 import com.zjqy.purchaseplatform.service.CompanyService;
+import com.zjqy.purchaseplatform.service.OrderService;
 import com.zjqy.purchaseplatform.service.PurchaseService;
 import com.zjqy.purchaseplatform.unit.ConstantManager;
 
@@ -58,6 +61,38 @@ public class PurchaseRest {
 		return "purchase/productPrice";
 	}
 	
+	@RequestMapping(value = "/orders", method = RequestMethod.GET)
+	public String toOrders(ModelMap map){
+		List<Order> orders = orderService.getOrders();
+		map.put("orders", orders);
+		return "purchase/orders";
+	}
+	
+	@RequestMapping(value = "/orderDetail/{orderId}", method = RequestMethod.GET)
+	public String toOrderDetail(ModelMap map, @PathVariable Long orderId){
+		List<OrderItem> items = orderService.getOrderItems(orderId);
+		map.put("items", items);
+		return "purchase/orderItems";
+	}
+	
+	@RequestMapping(value = "/deleteOrderItem/{orderId}/{itemId}", method = RequestMethod.GET)
+	public String deleteOrderItem(ModelMap map, @PathVariable Long orderId,
+			@PathVariable Long itemId) {
+		boolean b = orderService.deleteOrderItem(itemId);
+		List<OrderItem> items = orderService.getOrderItems(orderId);
+		map.put("result", b);
+		map.put("items", items);
+		return "purchase/orderItems";
+	}
+	
+	@RequestMapping(value = "/updateOrderItem", method = RequestMethod.POST)
+	public String updateOrderItem(ModelMap map, OrderItem oi){
+		orderService.updateOrderItem(oi);
+		List<OrderItem> items = orderService.getOrderItems(oi.getOrderId());
+		map.put("items", items);
+		return "purchase/orderItems";
+	}
+	
 	private void setProducts(ModelMap map){
 		map.put("materials", ConstantManager.getInstance().getGroupMaterials());
 	}
@@ -68,4 +103,6 @@ public class PurchaseRest {
 	private PurchaseService purchaseService;
 	@Autowired
 	private CommonService commonService;
+	@Autowired
+	private OrderService orderService;
 }

@@ -18,6 +18,7 @@ public class UserLoginDao {
 		
 		UserLogin ul = new UserLogin(account.getLoginName(), account.getPassword(), true, true, true, true,
 				new ArrayList<GrantedAuthority>());
+		ul.setAccount(account);
 		ul.setId(account.getId());
 		ul.setEmail(account.getEmail());
 		ul.setMobile(account.getPhone());
@@ -31,6 +32,7 @@ public class UserLoginDao {
 		
 		UserLogin ul = new UserLogin(account.getLoginName(), account.getPassword(), true, true, true, true,
 				new ArrayList<GrantedAuthority>());
+		ul.setAccount(account);
 		ul.setId(account.getId());
 		ul.setEmail(account.getEmail());
 		ul.setMobile(account.getPhone());

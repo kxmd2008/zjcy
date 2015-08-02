@@ -6,6 +6,8 @@ import org.luis.basic.domain.IGenericService;
 import com.zjqy.purchaseplatform.domain.Account;
 import com.zjqy.purchaseplatform.domain.CompanyInfo;
 import com.zjqy.purchaseplatform.domain.MaterialsInquiry;
+import com.zjqy.purchaseplatform.domain.Order;
+import com.zjqy.purchaseplatform.domain.OrderItem;
 import com.zjqy.purchaseplatform.domain.RawMaterials;
 
 public class ServiceFactory {
@@ -44,5 +46,23 @@ public class ServiceFactory {
 			materialsInquiryService = BaseServiceBuilder.build(MaterialsInquiry.class);
 		}
 		return materialsInquiryService;
+	}
+	
+	private static IGenericService<Order> orderService;
+	
+	public static IGenericService<Order> getOrderService(){
+		if(orderService == null){
+			orderService = BaseServiceBuilder.build(Order.class);
+		}
+		return orderService;
+	}
+	
+	private static IGenericService<OrderItem> orderItemService;
+	
+	public static IGenericService<OrderItem> getOrderItemService(){
+		if(orderItemService == null){
+			orderItemService = BaseServiceBuilder.build(OrderItem.class);
+		}
+		return orderItemService;
 	}
 }

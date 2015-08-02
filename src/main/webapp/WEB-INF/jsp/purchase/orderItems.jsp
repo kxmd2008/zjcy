@@ -54,38 +54,38 @@
 												<table class="table table-condensed table-striped table-bordered table-hover">
 													<thead>
 														<tr>
-															<th class="text-center col-xs-1">订单号</th>
-															<th class="text-center col-xs-1">下单日期</th>
-															<th class="text-center col-xs-1">下单时间</th>
-															<th class="text-center col-xs-1">付款日期</th>
-															<th class="text-center col-xs-1">付款时间</th>
-															<th class="text-center col-xs-1">订单金额</th>
-															<th class="text-center col-xs-1">订单状态</th>
-															<th class="text-center col-xs-2">发票号</th>
+															<th class="text-center col-xs-1">编号</th>
+															<th class="text-center col-xs-1">货物名称</th>
+															<th class="text-center col-xs-1">规格/型号</th>
+															<th class="text-center col-xs-1">单位</th>
+															<th class="text-center col-xs-1">数量</th>
+															<th class="text-center col-xs-1">单价</th>
+															<th class="text-center col-xs-1">备注</th>
+															<th class="text-center col-xs-2">合同号</th>
+															<th class="text-center col-xs-2">交货期</th>
 															<th class="text-center col-xs-2">操作</th>
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach items="${ orders}" var="item">
+														<c:forEach items="${ items}" var="item">
 															<tr>
 																<td class="text-center">
-																	${item.orderNo }
+																	${item.itemNo }
 																</td>
-																<td>${item.orderDate }</td>
-																<td><ct:df pattern="HH:mm:ss" datetime="${item.orderTime }"/></td>
-																<td class="text-right">${item.payDate }</td>
+																<td>${item.productName }</td>
+																<td>${item.spec }</td>
+																<td class="text-right">${item.unit }</td>
 																<td class="text-right">
-<%-- 																	<span class="highlight-color-green-text"> --%>
-																	<ct:df pattern="HH:mm:ss" datetime="${item.payTime }"/>
-<%-- 																	</span> --%>
+																	${item.quantity }
 																</td>
-																<td class="text-right">${item.amount }</td>
+																<td class="text-right">${item.price }</td>
 																<td class="text-right">
-																	<ct:dict code="1001" itemValue="${item.status}"></ct:dict>
+																	${item.contractNo}
 																</td>
-																<td class="text-right">${item.receiptNo }</td>
+																<td class="text-right">${item.date }</td>
 																<td class="text-right">
-																	<a href="orderDetail/${item.id }" role="button" class="btn btn-primary">明细</a>
+																	<a href="itemUpdate/${item.id }" role="button" class="btn btn-primary">修改</a>
+																	<a href="itemDelete/${item.id }" role="button" class="btn btn-primary">删除</a>
 																</td>
 															</tr>
 														</c:forEach>

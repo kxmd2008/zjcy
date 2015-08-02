@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 import org.luis.basic.domain.BaseEntity;
 
 public class OrderItem extends BaseEntity {
-
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3477646966610054740L;
+	private Long orderId;
 	private String itemNo;// 编号
 	private String productName;// 货物名称
 	private String spec;// 规格/型号
@@ -15,6 +15,14 @@ public class OrderItem extends BaseEntity {
 	private BigDecimal price;// 单价
 	private String contractNo;// 合同号
 	private String date;// 交货期
+
+	public Long getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
+	}
 
 	public String getItemNo() {
 		return itemNo;

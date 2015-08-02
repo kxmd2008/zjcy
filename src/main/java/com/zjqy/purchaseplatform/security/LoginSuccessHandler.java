@@ -16,9 +16,11 @@ import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.util.StringUtils;
 
+import com.zjqy.purchaseplatform.domain.Account;
 import com.zjqy.purchaseplatform.domain.CompanyInfo;
 import com.zjqy.purchaseplatform.domain.RoleType;
 import com.zjqy.purchaseplatform.mybitis.mapper.ServiceFactory;
+import com.zjqy.purchaseplatform.util.BaseUtil;
 
 public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
@@ -38,9 +40,11 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 		WrappedUserLogin userDetails = (WrappedUserLogin) authentication
 				.getPrincipal();
 		UserLogin userLogin = userDetails.getUserLogin();
-
+		Account account = userLogin.getAccount();
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("userLogin", userLogin);
+		BaseUtil.setSessionAccount(request, account);
 		String userType = userLogin.getUserType();
 		if(RoleType.SUPPLIER.name().equals(userType)){
 			FilterAttributes fa = FilterAttributes.blank().add("accountId", userLogin.getId());

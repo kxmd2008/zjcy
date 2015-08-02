@@ -54,8 +54,6 @@
 						<div class="col-md-6">
 							<!-- START Main Buttons -->
 							<div class="page-heading-controls">
-								<a href="ecommerce-product-list.html" role="button" class="btn btn-primary">保存</a>
-								<a href="productPrice" role="button" class="btn btn-danger">取消</a>
 							</div>
 							<!-- END Main Buttons -->
 						</div>
@@ -66,7 +64,7 @@
 							<div class="block">
 								<form class="registration-form form-horizontal" role="form" action="<%=request.getContextPath()%>/mgt/changePwd">
 								<div class="modal-body">
-									<div class="block-content-outer" style="margin-left: 18%;">
+									<div class="block-content-outer" >
 										<div class="block-content-inner">
 												<div class="form-group">
 													<label for="oldPassword" class="col-sm-3 control-label">旧密码</label>
@@ -91,8 +89,8 @@
 									</div>
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-									<button type="button" class="btn btn-primary">保存</button>
+									<a href="<%=request.getContextPath()%>/mgt/updPassword" role="button" class="btn btn-primary">保存</a>
+									<a href="window.history.go(-1)" role="button" class="btn btn-danger">取消</a>
 								</div>
 								</form>
 							</div>

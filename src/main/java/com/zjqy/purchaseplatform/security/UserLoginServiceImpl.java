@@ -11,8 +11,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.zjqy.purchaseplatform.domain.Account;
-
 @Component("userLoginService")
 public class UserLoginServiceImpl implements UserDetailsService {
 	private Logger logger = Logger.getLogger(getClass());

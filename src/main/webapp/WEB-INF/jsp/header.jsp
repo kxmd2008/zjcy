@@ -11,7 +11,7 @@
 				<!-- START logo -->
 				<div class="logo">
 					<a href="#">
-						<img class="default-logo" src="<%=request.getContextPath()%>/assets/images/required/logo-default.png" width="156" height="44" alt="Logo" />
+						<img class="default-logo" src="<%=request.getContextPath()%>/assets/images/required/logo2.png" alt="Logo" style="margin-left: 10px;"/>
 						<img class="small-logo" src="<%=request.getContextPath()%>/assets/images/required/logo-small.png" width="48" height="44" alt="Logo" />
 					</a>
 				</div>
@@ -49,7 +49,7 @@
 								</a>
 								<ul>
 									<li>
-										<a href="<%=request.getContextPath()%>/mgt/toChangePwd" >
+										<a href="<%=request.getContextPath()%>/mgt/changePwd" >
 											<span aria-hidden="true" class="icon icon-user"></span>
 											<span class="main-text">修改密码</span>
 										</a>

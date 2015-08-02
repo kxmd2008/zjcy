@@ -4,13 +4,10 @@
 <jsp:include page="head.jsp"/>
 <body id="signin-type-2">
 	<div class="container-fluid">
-<!-- 		<div> -->
-<!-- 			<h1 style="font-weight: bold;color: white;text-align: center;">上海紫江彩印包装有限公司电子采购平台</h1> -->
-<!-- 		</div> -->
 		<div id="body-container">
 			<div class="standalone-page">
-				<div class="standalone-page-logo">
-					<img src="assets/images/required/logo-default.png" width="156" height="44" alt="Logo" />
+				<div class="standalone-page-logo" style="margin-bottom: 5px;">
+					<img src="assets/images/required/logo2.png" alt="Logo" />
 				</div>
 				<div class="error-messages hidden"></div>
 				<div class="standalone-page-content" data-border-top="multi">
