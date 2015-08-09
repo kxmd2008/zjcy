@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zjqy.purchaseplatform.domain.CompanyInfo;
 import com.zjqy.purchaseplatform.domain.MaterialsInquiry;
+import com.zjqy.purchaseplatform.domain.Quote;
 import com.zjqy.purchaseplatform.service.CommonService;
 import com.zjqy.purchaseplatform.util.BaseUtil;
 
@@ -55,11 +56,19 @@ public class SupplierOptionRest {
 		return "supplier/productPriceEdit";
 	}
 	
+	
+	/**
+	 * 供应商竞价
+	 * @param map
+	 * @param quote
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(value = "/saveInquiry", method = RequestMethod.POST)
-	public String saveInquiry(ModelMap map, MaterialsInquiry mi, HttpServletRequest req){
+	public String saveInquiry(ModelMap map, Quote quote, HttpServletRequest req){
 		MaterialsInquiry inquiry = (MaterialsInquiry) BaseUtil.getSessionAttr(req, "inquiry");
-		inquiry.setPrice(mi.getPrice());
-		inquiry.setArrivalDate(mi.getArrivalDate());
+//		inquiry.setPrice(mi.getPrice());
+//		inquiry.setArrivalDate(mi.getArrivalDate());
 		commonService.supplierInquiry(inquiry);
 		return "redirect:/supplier/inquiry";
 	}

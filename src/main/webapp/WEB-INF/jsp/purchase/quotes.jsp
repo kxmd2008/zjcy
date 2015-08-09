@@ -3,9 +3,10 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.luis.com/common/tags" prefix="ct" %>
 <jsp:include page="../head.jsp"/>
 
-<!-- 产品报价 -->
+<!-- 订单 -->
 <body>
 	<div class="container-fluid">
 		<jsp:include page="../header.jsp"/>
@@ -20,7 +21,7 @@
 									<a href="#">首页</a>
 								</li>
 								<li>
-									<a href="#">询价查询</a>
+									<a href="#">订单管理</a>
 								</li>
 							</ol>
 						</div>
@@ -30,14 +31,13 @@
 							<h1>
 								<span aria-hidden="true" class="icon icon-dollar"></span>
 								<span class="main-text">
-									询价查询
+									订单管理
 								</span>
 							</h1>
 						</div>
 						<div class="col-md-6">
 							<!-- START Main Buttons -->
 							<div class="page-heading-controls">
-								<a href="productPriceAdd" role="button" class="btn btn-primary">新增询价</a>
 							</div>
 							<!-- END Main Buttons -->
 						</div>
@@ -47,11 +47,6 @@
 
 							<!-- START Block: Product List -->
 							<div class="block">
-<!-- 								<div class="block-heading"> -->
-<!-- 									<div class="main-text h2"> -->
-<!-- 										Products -->
-<!-- 									</div> -->
-<!-- 								</div> -->
 								<div class="block-content-outer">
 									<div class="block-content-inner">
 										<div class="table-responsive">
@@ -59,32 +54,38 @@
 												<table class="table table-condensed table-striped table-bordered table-hover">
 													<thead>
 														<tr>
-															<th class="text-center col-xs-1">产品名称</th>
-															<th class="text-center col-xs-1">产品规格</th>
-															<th class="text-center col-xs-1">数量</th>
-															<th class="text-center col-xs-1">单位</th>
-															<th class="text-center col-xs-2">要求交货日期</th>
-															<th class="text-center col-xs-2">供应商确认到货日期</th>
-															<th class="text-center col-xs-2">单据</th>
+															<th class="text-center col-xs-1">订单号</th>
+															<th class="text-center col-xs-1">下单日期</th>
+															<th class="text-center col-xs-1">下单时间</th>
+															<th class="text-center col-xs-1">付款日期</th>
+															<th class="text-center col-xs-1">付款时间</th>
+															<th class="text-center col-xs-1">订单金额</th>
+															<th class="text-center col-xs-1">订单状态</th>
+															<th class="text-center col-xs-2">发票号</th>
 															<th class="text-center col-xs-2">操作</th>
 														</tr>
 													</thead>
 													<tbody>
-														<c:forEach items="${ inquirys}" var="item">
+														<c:forEach items="${ orders}" var="item">
 															<tr>
 																<td class="text-center">
-<!-- 																	<img src="test-data/ecommerce-product-list/images/htcthd.jpg" width="40" height="40" class="list-thumbnail" alt="" /> -->
-																	${item.materialsName }
+																	${item.orderNo }
 																</td>
-																<td>${item.spec }</td>
-																<td>${item.num }</td>
-																<td class="text-right">${item.unit }</td>
-																<td class="text-right">${item.requireArrivalDate }</td>
-																<td class="text-right">${item.arrivalDate }</td>
-																<td class="text-right"></td>
+																<td>${item.orderDate }</td>
+																<td><ct:df pattern="HH:mm:ss" datetime="${item.orderTime }"/></td>
+																<td class="text-right">${item.payDate }</td>
 																<td class="text-right">
-																	<a href="productPriceEdit/${item.id }" role="button" class="btn btn-primary">修改</a>
-																	<a href="quotes/${item.id }" role="button" class="btn btn-primary">查看竞价</a>
+<%-- 																	<span class="highlight-color-green-text"> --%>
+																	<ct:df pattern="HH:mm:ss" datetime="${item.payTime }"/>
+<%-- 																	</span> --%>
+																</td>
+																<td class="text-right">${item.amount }</td>
+																<td class="text-right">
+																	<ct:dict code="1001" itemValue="${item.status}"></ct:dict>
+																</td>
+																<td class="text-right">${item.receiptNo }</td>
+																<td class="text-right">
+																	<a href="orderDetail/${item.id }" role="button" class="btn btn-primary">明细</a>
 																</td>
 															</tr>
 														</c:forEach>

@@ -19,8 +19,8 @@ import org.luis.basic.domain.BaseEntity;
 public class MaterialsInquiry extends BaseEntity {
 
 	public static Integer STATUS_START = Integer.valueOf(0);
-	public static Integer STATUS_COMPLETE = Integer.valueOf(1);//竞价完成
-//	public static Integer STATUS_COMPLETE = Integer.valueOf(2);//竞价完成
+	public static Integer STATUS_COMPLETE = Integer.valueOf(1);// 竞价完成
+	// public static Integer STATUS_COMPLETE = Integer.valueOf(2);//竞价完成
 
 	private static final long serialVersionUID = -3396687012262521733L;
 	private Long materialsId;// 原材料
@@ -28,9 +28,9 @@ public class MaterialsInquiry extends BaseEntity {
 	private String spec;// 规格
 	private Integer num;
 	private String unit;// 单位
-	private Long companyId;
-	private BigDecimal price;// 单价
-	private String companyName;
+	// private Long companyId;
+	// private BigDecimal price;// 单价
+	// private String companyName;
 	private BigDecimal totalPrice;// 总价
 
 	private String requireArrivalDate;// 要求到货日期
@@ -39,9 +39,18 @@ public class MaterialsInquiry extends BaseEntity {
 	private Long timestamp;// 入库时间
 
 	private Integer status = STATUS_START;
+	private String endDate;
 
 	@Transient
 	private List<Long> companyIds;
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 
 	public Integer getStatus() {
 		return status;
@@ -81,14 +90,6 @@ public class MaterialsInquiry extends BaseEntity {
 
 	public void setArrivalDate(String arrivalDate) {
 		this.arrivalDate = arrivalDate;
-	}
-
-	public String getCompanyName() {
-		return companyName;
-	}
-
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
 	}
 
 	public BigDecimal getTotalPrice() {
@@ -137,22 +138,6 @@ public class MaterialsInquiry extends BaseEntity {
 
 	public void setUnit(String unit) {
 		this.unit = unit;
-	}
-
-	public Long getCompanyId() {
-		return companyId;
-	}
-
-	public void setCompanyId(Long companyId) {
-		this.companyId = companyId;
-	}
-
-	public BigDecimal getPrice() {
-		return price;
-	}
-
-	public void setPrice(BigDecimal price) {
-		this.price = price;
 	}
 
 }
